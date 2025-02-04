@@ -38,7 +38,7 @@ To use Modular Separation only, without HMVC, controllers will extend the CodeIg
 You must use PHP5 style constructors in your controllers. ie:
 
 	<?php
-	class Xyz extends MX_Controller 
+	class Xyz extends MX_Controller
 	{
     		function __construct()
     		{
@@ -88,8 +88,8 @@ Models and libraries can also be loaded from sub-directories in their respective
 When using form validation with MX you will need to extend the `CI_Form_validation` class as shown below, before assigning the current controller as the `$CI` variable to the form_validation library. This will allow your callback methods to function properly. (This has been discussed on the CI forums also). ie:
 
 	<?php
-	/** application/libraries/MY_Form_validation **/ 
-	class MY_Form_validation extends CI_Form_validation 
+	/** application/libraries/MY_Form_validation **/
+	class MY_Form_validation extends CI_Form_validation
 	{
     		public $CI;
 	}
@@ -97,12 +97,12 @@ When using form validation with MX you will need to extend the `CI_Form_validati
 And:
 
 	<?php
-	class Xyz extends MX_Controller 
+	class Xyz extends MX_Controller
 	{
 		function __construct()
 		{
 			parent::__construct();
-        
+
 			$this->load->library('form_validation');
 			$this->form_validation->CI =& $this;
 		}
@@ -112,7 +112,7 @@ And:
 
 Using a Module as a view partial from within a view is as easy as writing:
 
-	<?php echo Modules::run('module/controller/method', $param, $...); ?> 
+	<?php echo Modules::run('module/controller/method', $param, $...); ?>
 
 Parameters are optional, You may pass any number of parameters.
 

@@ -14,17 +14,17 @@
  *
  * @copyright	Copyright (c) 2011 Wiredesignz
  * @version 	5.4
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -77,7 +77,7 @@ class MX_Loader extends CI_Loader
 		foreach (Modules::$locations as $location => $offset) {
 			
 			/* only add a module path if it exists */
-			if (is_dir($module_path = $location.$module.'/') && ! in_array($module_path, $this->_ci_model_paths)) 
+			if (is_dir($module_path = $location.$module.'/') && ! in_array($module_path, $this->_ci_model_paths))
 			{
 				array_unshift($this->_ci_model_paths, $module_path);
 			}
@@ -92,7 +92,7 @@ class MX_Loader extends CI_Loader
 	/** Load the database drivers **/
 	public function database($params = '', $return = FALSE, $active_record = NULL) {
 		
-		if (class_exists('CI_DB', FALSE) AND $return == FALSE AND $active_record == NULL AND isset(CI::$APP->db) AND is_object(CI::$APP->db)) 
+		if (class_exists('CI_DB', FALSE) AND $return == FALSE AND $active_record == NULL AND isset(CI::$APP->db) AND is_object(CI::$APP->db))
 			return;
 
 		require_once BASEPATH.'database/DB'.EXT;
@@ -184,7 +184,7 @@ class MX_Loader extends CI_Loader
 
 		($_alias = $object_name) OR $_alias = basename($model);
 
-		if (in_array($_alias, $this->_ci_models, TRUE)) 
+		if (in_array($_alias, $this->_ci_models, TRUE))
 			return CI::$APP->$_alias;
 			
 		/* check module */
@@ -274,7 +274,7 @@ class MX_Loader extends CI_Loader
 
 	protected function &_ci_get_component($component) {
 		return CI::$APP->$component;
-	} 
+	}
 
 	public function __get($class) {
 		return (isset($this->controller)) ? $this->controller->$class : CI::$APP->$class;
@@ -306,10 +306,10 @@ class MX_Loader extends CI_Loader
 			if( ! file_exists($_ci_path)) $_ci_path = '';
 		}
 
-		if (empty($_ci_path)) 
+		if (empty($_ci_path))
 			show_error('Unable to load the requested file: '.$_ci_file);
 
-		if (isset($_ci_vars)) 
+		if (isset($_ci_vars))
 			$this->_ci_cached_vars = array_merge($this->_ci_cached_vars, (array) $_ci_vars);
 		
 		extract($this->_ci_cached_vars);
@@ -319,7 +319,7 @@ class MX_Loader extends CI_Loader
 		if ((bool) @ini_get('short_open_tag') === FALSE AND CI::$APP->config->item('rewrite_short_tags') == TRUE) {
 			echo eval('?>'.preg_replace("/;*\s*\?>/", "; ?>", str_replace('<?=', '<?php echo ', file_get_contents($_ci_path))));
 		} else {
-			include($_ci_path); 
+			include($_ci_path);
 		}
 
 		log_message('debug', 'File loaded: '.$_ci_path);
